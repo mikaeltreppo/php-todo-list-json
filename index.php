@@ -7,7 +7,16 @@
     <title>todo</title>
 </head>
 <body>
-<div id="app">{{ todoList }}</div>
+<div id="app">
+
+<ul>
+    <li v-for='todo in todoList'>{{todo}}</li>
+</ul>
+<input type="text" v-model='todoItem'>
+<button type="submit" @click='addItem'>Aggiungi</button>
+
+
+</div>
 
 
 

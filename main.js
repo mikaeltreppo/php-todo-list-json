@@ -12,9 +12,20 @@ createApp({
         showList(){
             axios.get('server.php').then(response => {
                 this.todoList = response.data;
-                this.todoItem = '';
+              
 
             })
+        },
+        addItem(){
+
+            const data = {
+                todoItem : this.todoItem,
+            }
+            axios.post('server.php', data, {headers: { 'Content-Type': 'multipart/form-data'}}).then(response =>{
+                this.todoList = response.data,
+                this.todoList.push(this.todoItem),
+                this.todoItem =''
+            });
         }
     },
     mounted(){
