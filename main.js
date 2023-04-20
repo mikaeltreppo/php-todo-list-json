@@ -4,7 +4,8 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            todoItem: '',
+            todoItems: '',
+            todoItem:'',
             todoList: [],
         } 
     },
@@ -23,10 +24,16 @@ createApp({
             }
             axios.post('server.php', data, {headers: { 'Content-Type': 'multipart/form-data'}}).then(response =>{
                 this.todoList = response.data,
-                this.todoList.push(this.todoItem),
-                this.todoItem =''
+                this.todoList.push(this.todoItems),
+                this.todoItems =''
             });
+        },
+        remove(){
+            this.todoItem = !this.todoItem
+
+           
         }
+
     },
     mounted(){
         this.showList();
