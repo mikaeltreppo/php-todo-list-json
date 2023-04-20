@@ -5,37 +5,39 @@ createApp({
     data() {
         return {
             todoItems: '',
-            todoItem:'',
-            todoList: [],
-        } 
+            todoItem: '',
+            todoList: [
+                
+            ],
+        }
     },
     methods: {
-        showList(){
+        showList() {
             axios.get('server.php').then(response => {
                 this.todoList = response.data;
-              
+
 
             })
         },
-        addItem(){
+        addItem() {
 
             const data = {
-                todoItem : this.todoItem,
+                todoItem: this.todoItem,
             }
-            axios.post('server.php', data, {headers: { 'Content-Type': 'multipart/form-data'}}).then(response =>{
+            axios.post('server.php', data, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
                 this.todoList = response.data,
-                this.todoList.push(this.todoItems),
-                this.todoItems =''
+                    this.todoList.push(this.todoItems),
+                    this.todoItems = ''
             });
         },
-        remove(){
+        remove() {
             this.todoItem = !this.todoItem
+        
 
-           
         }
 
     },
-    mounted(){
+    mounted() {
         this.showList();
     }
 }).mount('#app')
