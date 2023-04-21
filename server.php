@@ -11,6 +11,7 @@ if (isset($_POST['todoItem'])) {
 
     $todoList = json_encode($todoList);
     file_put_contents('database.json', $todoList);
+    $todoList = json_decode($todoList);
 
 }
 
